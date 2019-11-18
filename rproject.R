@@ -91,39 +91,63 @@ g = data.frame()
 h = data.frame()
 
 for(i in seq(1,5744,8)){
-  a = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
+  a = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
 }
 
 for(i in seq(2,5744,8)){
-  b = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
+  b = rbind(b,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
 }
 
 for(i in seq(3,5744,8)){
-  c = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
+  c = rbind(c,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
 }
 
 for(i in seq(4,5744,8)){
-  d = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
+  d = rbind(d,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
 }
 
 for(i in seq(5,5744,8)){
-  e = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
+  e = rbind(e,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
 }
 
 for(i in seq(6,5744,8)){
-  f = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
+  f = rbind(f,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
 }
 
 for(i in seq(7,5744,8)){
-  g = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
+  g = rbind(g,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
 }
 
 for(i in seq(8,5744,8)){
-  h = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
+  h = rbind(h,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
 }
 
-library(ggplot2)
-sp2 = ggplot(rdata1, aes(x=Latitude, y=Longitude, color=NO2.Value)) + geom_point()
-print(sp2)
- 
+colnames(a)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
+colnames(b)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
+colnames(c)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
+colnames(d)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
+colnames(e)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
+colnames(f)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
+colnames(g)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
+colnames(h)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
+
+final = data.frame()
+final = rbind(a,b,c,d,e,f,g,h)
+
+
+library(plotly)
+
+sp2 <- plot_ly(final, x = ~Lat, y = ~Time, z = ~Long, color = ~NO2, size=1, colorscale = c('#BF382A', '#0G4B8E'),showscale=TRUE) %>%
+  add_markers() %>%
+  layout(scene = list(xaxis = list(title = 'Latitude'),
+                      yaxis = list(title = 'Time'),
+                      zaxis = list(title = 'Longitude')))
+#print(sp2)
+
+pie <- plot_ly(final, labels = ~O3Q, values = ~O3Q, type = 'pie') %>%
+  layout(title = 'O3 Quality',
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+print(pie)
+
 View(rdata1) 
