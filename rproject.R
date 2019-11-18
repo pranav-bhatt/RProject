@@ -31,6 +31,9 @@ rdata1$NO2.Quality[rdata1$NO2.Quality=="--"]<-NA
 rdata1$O3.Quality[rdata1$O3.Quality=="--"]<-NA
 rdata1$PM10.Quality[rdata1$PM10.Quality=="--"]<-NA
 rdata1$Air.Quality[rdata1$Air.Quality=="--"]<-NA
+rdata1$NO2.Value[rdata1$NO2.Value=="--"]<-mean(rdata1[["NO2.Value"]])
+rdata1$O3.Value[rdata1$O3.Value=="--"]<-mean(rdata1[["O3.Value"]])
+
 
 # Replacing all the NA values with the previous value
 
@@ -40,8 +43,8 @@ rdata1[,2]<-dfair%>%do(na.locf(.))
 dfoxy<-as.data.frame(rdata1[,c(5,6,7)])
 rdata1[,c(5,6,7)]<-dfoxy%>%do(na.locf(.))
 
-dfnitro<-as.data.frame(rdata1[,10])
-rdata1[,c(5,6,7)]<-dfoxy%>%do(na.locf(.))
+dfnitro<-as.data.frame(rdata1[8,9,10])
+rdata1[,c(8,9,10)]<-dfoxy%>%do(na.locf(.))
 
 dfpm<-as.data.frame(rdata1[,c(11,12,13)])
 rdata1[,c(11,12,13)]<-dfoxy%>%do(na.locf(.))
@@ -68,6 +71,48 @@ for (i in seq(1,5744)){
 }
 
 #Visualisations
+a = data.frame()
+b = data.frame()
+c = data.frame()
+d = data.frame()
+e = data.frame()
+f = data.frame()
+g = data.frame()
+h = data.frame()
 
-plot(rdata1$Latitude,rdata1$Longitude)
+for(i in seq(1,5744,8)){
+  a = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+}
+
+for(i in seq(2,5744,8)){
+  b = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+}
+
+for(i in seq(3,5744,8)){
+  c = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+}
+
+for(i in seq(4,5744,8)){
+  d = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+}
+
+for(i in seq(5,5744,8)){
+  e = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+}
+
+for(i in seq(6,5744,8)){
+  f = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+}
+
+for(i in seq(7,5744,8)){
+  g = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+}
+
+for(i in seq(8,5744,8)){
+  h = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+}
+
+library(ggplot2)
+sp2 = ggplot(rdata1, aes(x=Latitude, y=Longitude, color=NO2.Value)) + geom_point()
+print(sp2)
   
