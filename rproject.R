@@ -38,14 +38,26 @@ rdata1$Air.Quality[rdata1$Air.Quality=="--"]<-NA
 dfair<-as.data.frame(rdata1[,2])
 rdata1[,2]<-dfair%>%do(na.locf(.))
 
-dfoxy<-as.data.frame(rdata1[,c(5,6,7)])
-rdata1[,c(5,6,7)]<-dfoxy%>%do(na.locf(.))
+dfoxy<-as.data.frame(rdata1[,c(5,6)])
+rdata1[,c(5,6)]<-dfoxy%>%do(na.locf(.))
 
-dfnitro<-as.data.frame(rdata1[8,9,10])
-rdata1[,c(8,9,10)]<-dfoxy%>%do(na.locf(.))
+dfoxy1<-as.data.frame(rdata1[,7])
+rdata1[,7]<-dfoxy1%>%do(na.locf(.))
 
-dfpm<-as.data.frame(rdata1[,c(11,12,13)])
-rdata1[,c(11,12,13)]<-dfoxy%>%do(na.locf(.))
+
+dfnitro<-as.data.frame(rdata1[8,9])
+rdata1[,c(8,9)]<-dfoxy%>%do(na.locf(.))
+
+dfnitro1<-as.data.frame(rdata1[,10])
+rdata1[,10]<-dfnitro1%>%do(na.locf(.))
+
+
+dfpm<-as.data.frame(rdata1[,c(11,12)])
+rdata1[,c(11,12)]<-dfoxy%>%do(na.locf(.))
+
+dfpm1<-as.data.frame(rdata1[,13])
+rdata1[,13]<-dfpm1%>%do(na.locf(.))
+
 
 rdata1$Latitude<-as.numeric(rdata1$Latitude)
 
