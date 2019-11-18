@@ -1,7 +1,6 @@
 setwd("C:/Users/PC/Documents/Projects/College Assignments/RProject")
 rdata=read.csv("dataset.csv")
 rdata1=as.data.frame(rdata)
-View(rdata)
 View(rdata1)
 class(rdata1)
 
@@ -31,8 +30,7 @@ rdata1$NO2.Quality[rdata1$NO2.Quality=="--"]<-NA
 rdata1$O3.Quality[rdata1$O3.Quality=="--"]<-NA
 rdata1$PM10.Quality[rdata1$PM10.Quality=="--"]<-NA
 rdata1$Air.Quality[rdata1$Air.Quality=="--"]<-NA
-rdata1$NO2.Value[rdata1$NO2.Value=="--"]<-mean(rdata1[["NO2.Value"]])
-rdata1$O3.Value[rdata1$O3.Value=="--"]<-mean(rdata1[["O3.Value"]])
+
 
 
 # Replacing all the NA values with the previous value
@@ -81,35 +79,35 @@ g = data.frame()
 h = data.frame()
 
 for(i in seq(1,5744,8)){
-  a = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+  a = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
 }
 
 for(i in seq(2,5744,8)){
-  b = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+  b = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
 }
 
 for(i in seq(3,5744,8)){
-  c = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+  c = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
 }
 
 for(i in seq(4,5744,8)){
-  d = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+  d = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
 }
 
 for(i in seq(5,5744,8)){
-  e = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+  e = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
 }
 
 for(i in seq(6,5744,8)){
-  f = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+  f = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
 }
 
 for(i in seq(7,5744,8)){
-  g = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+  g = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
 }
 
 for(i in seq(8,5744,8)){
-  h = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$NO2.Quality[i]))
+  h = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i]))
 }
 
 library(ggplot2)
