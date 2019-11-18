@@ -125,4 +125,5 @@ for(i in seq(8,5744,8)){
 library(ggplot2)
 sp2 = ggplot(rdata1, aes(x=Latitude, y=Longitude, color=NO2.Value)) + geom_point()
 print(sp2)
-  
+ 
+View(rdata1) 
