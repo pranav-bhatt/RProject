@@ -145,6 +145,6 @@ sp2 <- plot_ly(final, x = ~Lat, y = ~Time, z = ~Long, color = ~NO2, size=1, colo
                       zaxis = list(title = 'Longitude')))
 print(sp2)
 
-print(pie(table(rdata1$Air.Quality), names(table(rdata1$Air.Quality)),main="Air Quality breakdown"))
-
+#print(pie(table(rdata1$Air.Quality), names(table(rdata1$Air.Quality)),main="Air Quality breakdown"))
+print(plot_ly(rdata1,x = ~Air.Quality , type = "bar",colors = c('#BF382A', '#0G4B8E')))
 View(rdata1) 
