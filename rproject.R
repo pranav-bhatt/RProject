@@ -31,7 +31,7 @@ rdata1$O3.Quality[rdata1$O3.Quality=="--"]<-NA
 rdata1$PM10.Quality[rdata1$PM10.Quality=="--"]<-NA
 rdata1$Air.Quality[rdata1$Air.Quality=="--"]<-NA
 
-
+print("hi")
 
 # Replacing all the NA values with the previous value
 
@@ -61,13 +61,13 @@ rdata1[,13]<-dfpm1%>%do(na.locf(.))
 
 rdata1$Latitude<-as.numeric(rdata1$Latitude)
 
+print("hi")
 # correcting the outliers in latitude column
 
 for (i in seq(1,5744)){
   if(rdata1$Latitude[i] > 42)
     rdata1$Latitude[i]=rdata1$Latitude[i]/10000
 }
-
 
 # normalizing the PM10.Value column
 
@@ -89,51 +89,52 @@ e = data.frame()
 f = data.frame()
 g = data.frame()
 h = data.frame()
-
 for(i in seq(1,5744,8)){
-  a = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
+  a = rbind(a,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$Air.Quality))
 }
 
+print("1")
 for(i in seq(2,5744,8)){
-  b = rbind(b,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
+  b = rbind(b,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$Air.Quality))
 }
 
+print("2")
 for(i in seq(3,5744,8)){
-  c = rbind(c,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
+  c = rbind(c,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$Air.Quality))
 }
-
+print("3")
 for(i in seq(4,5744,8)){
-  d = rbind(d,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
+  d = rbind(d,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$Air.Quality))
 }
-
+print("4")
 for(i in seq(5,5744,8)){
-  e = rbind(e,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
+  e = rbind(e,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$Air.Quality))
 }
-
+print("5")
 for(i in seq(6,5744,8)){
-  f = rbind(f,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
+  f = rbind(f,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$Air.Quality))
 }
-
+print("6")
 for(i in seq(7,5744,8)){
-  g = rbind(g,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
+  g = rbind(g,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$Air.Quality))
 }
-
+print("7")
 for(i in seq(8,5744,8)){
-  h = rbind(h,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$O3.Quality))
+  h = rbind(h,c(rdata1$Station[i],rdata1$Latitude[i],rdata1$Longitude[i],rdata1$NO2.Value[i],rdata1$O3.Value[i],rdata1$PM10.Value[i],rdata1$Date.Time[i],rdata1$Air.Quality))
 }
+print("8")
 
-colnames(a)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
-colnames(b)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
-colnames(c)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
-colnames(d)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
-colnames(e)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
-colnames(f)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
-colnames(g)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
-colnames(h)=c("Station","Lat","Long","NO2","O3","PM10","Time","O3Q")
+colnames(a)=c("Station","Lat","Long","NO2","O3","PM10","Time","AQ")
+colnames(b)=c("Station","Lat","Long","NO2","O3","PM10","Time","AQ")
+colnames(c)=c("Station","Lat","Long","NO2","O3","PM10","Time","AQ")
+colnames(d)=c("Station","Lat","Long","NO2","O3","PM10","Time","AQ")
+colnames(e)=c("Station","Lat","Long","NO2","O3","PM10","Time","AQ")
+colnames(f)=c("Station","Lat","Long","NO2","O3","PM10","Time","AQ")
+colnames(g)=c("Station","Lat","Long","NO2","O3","PM10","Time","AQ")
+colnames(h)=c("Station","Lat","Long","NO2","O3","PM10","Time","AQ")
 
 final = data.frame()
 final = rbind(a,b,c,d,e,f,g,h)
-
 
 library(plotly)
 
@@ -142,12 +143,8 @@ sp2 <- plot_ly(final, x = ~Lat, y = ~Time, z = ~Long, color = ~NO2, size=1, colo
   layout(scene = list(xaxis = list(title = 'Latitude'),
                       yaxis = list(title = 'Time'),
                       zaxis = list(title = 'Longitude')))
-#print(sp2)
+print(sp2)
 
-pie <- plot_ly(final, labels = ~O3Q, values = ~O3Q, type = 'pie') %>%
-  layout(title = 'O3 Quality',
-         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
-print(pie)
+print(pie(table(rdata1$Air.Quality), names(table(rdata1$Air.Quality)),main="Air Quality breakdown"))
 
 View(rdata1) 
